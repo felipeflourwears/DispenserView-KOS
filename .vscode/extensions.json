@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "streetsidesoftware.code-spell-checker",
+    "wayou.vscode-todo-highlight",
+    "esbenp.prettier-vscode",
+    "nrwl.angular-console",
+    "dbaeumer.vscode-eslint",
+    "Postman.postman-for-vscode",
+    "styled-components.vscode-styled-components"
+  ]
+}

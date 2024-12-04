@@ -1,0 +1,99 @@
+{
+  "name": "my-kos-app-ui",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/my-kos-app-ui/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/my-kos-app-ui"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "my-kos-app-ui:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "my-kos-app-ui:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "my-kos-app-ui:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nx/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "my-kos-app-ui:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "my-kos-app-ui:build:development"
+        },
+        "production": {
+          "buildTarget": "my-kos-app-ui:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["coverage/apps/my-kos-app-ui"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/apps/my-kos-app-ui"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/my-kos-app-ui/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "my-kos-app-ui:build"
+      }
+    },
+      "kab": {
+      "command": "node tools/scripts/kabtool.mjs build my-kos-app-ui && node tools/scripts/kabtool.mjs list my-kos-app-ui ",
+      "options": {
+        "outputPath": "dist/archives/packages/my-kos-app-ui/",
+        "zipName": "ui.zip",
+        "kabName": "my-kos-app-ui.kab"
+      },
+      "dependsOn": [
+        "zip"
+      ]
+    },
+    "zip": {
+      "command": "node tools/scripts/archiver.js my-kos-app-ui",
+      "options": {
+        "outputPath": "dist/archives/packages/my-kos-app-ui/",
+        "zipName": "ui.zip"
+      },
+      "dependsOn": [
+        "build"
+      ]
+    }
+  },
+  "tags": []
+}

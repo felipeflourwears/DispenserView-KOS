@@ -1,0 +1,108 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
+    }
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
+    },
+    "e2e": {
+      "inputs": ["default", "^production"]
+    },
+    "test": {
+      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
+    },
+    "lint": {
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.json",
+        "{workspaceRoot}/.eslintignore"
+      ]
+    }
+  },
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "production": [
+      "default",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/.eslintrc.json",
+      "!{projectRoot}/jest.config.[jt]s"
+    ],
+    "sharedGlobals": []
+  },
+  "generators": {
+    "@nx/react": {
+      "application": {
+        "style": "@emotion/styled",
+        "linter": "eslint",
+        "bundler": "vite",
+        "babel": true
+      },
+      "component": {
+        "style": "@emotion/styled"
+      },
+      "library": {
+        "style": "@emotion/styled",
+        "linter": "eslint"
+      }
+    },
+    "@kosdev-code/kos-nx-plugin": {
+      "kos-model": {
+        "appProject": "my-kos-app-ui",
+        "modelProject": "models-my-kos-app-model",
+        "registrationProject": "my-kos-app-ui",
+        "modelDirectory": "lib",
+        "appDirectory": "app",
+        "components": true,
+        "dataServices": true,
+        "internal": false,
+        "singleton": false,
+        "unitTests": true
+      },
+      "kos-component": {
+        "appProject": "my-kos-app-ui",
+        "modelProject": "models-my-kos-app-model",
+        "registrationProject": "my-kos-app-ui",
+        "modelDirectory": "lib",
+        "appDirectory": "app",
+        "components": true,
+        "dataServices": true,
+        "internal": false,
+        "singleton": false,
+        "unitTests": true
+      },
+      "kos-hook": {
+        "appProject": "my-kos-app-ui",
+        "modelProject": "models-my-kos-app-model",
+        "registrationProject": "my-kos-app-ui",
+        "modelDirectory": "lib",
+        "appDirectory": "app",
+        "components": true,
+        "dataServices": true,
+        "internal": false,
+        "singleton": false,
+        "unitTests": true
+      },
+      "kos-context": {
+        "appProject": "my-kos-app-ui",
+        "modelProject": "models-my-kos-app-model",
+        "registrationProject": "my-kos-app-ui",
+        "modelDirectory": "lib",
+        "appDirectory": "app",
+        "components": true,
+        "dataServices": true,
+        "internal": false,
+        "singleton": false,
+        "unitTests": true
+      }
+    }
+  }
+}

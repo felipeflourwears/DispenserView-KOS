@@ -1,0 +1,26 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@kos-ui/my-kos-app-model": ["libs/models/my-kos-app-model/src/index.ts"],
+      "@kos-ui/kos-dispenser-model": [
+        "node_modules/@kosdev-code/kos-dispense-sdk/kos-dispenser-model/index.d.ts"
+      ]
+
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
